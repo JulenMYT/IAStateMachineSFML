@@ -3,10 +3,13 @@
 #include <string>
 #include <SFML/Graphics/RenderWindow.hpp>
 
+#include "GameObject.h"
+
 class Scene
 {
 public :
 	explicit Scene(const std::string& _name);
+	virtual ~Scene() = default;
 
 	void Awake() const;
 	void Start() const;
@@ -21,6 +24,12 @@ public :
 
 	const std::string& GetName() const;
 
+	GameObject* CreateGameObject(const std::string& _name);
+	void DestroyGameObject(const GameObject* _game_object);
+	GameObject* FindGameObject(const std::string& _name) const;
+	const std::vector<GameObject*>& GetGameObjects() const;
+
 private :
 	std::string name;
+	std::vector<GameObject*> gameObjects;
 };

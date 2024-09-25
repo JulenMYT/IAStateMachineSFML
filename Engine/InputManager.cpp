@@ -27,7 +27,6 @@ void InputManager::Update()
         {
             if (event.key.code >= 0 && event.key.code < sf::Keyboard::Key::KeyCount)
             {
-                cout << event.key.code << " ";
                 keyDown.set(event.key.code);
             }
         }
