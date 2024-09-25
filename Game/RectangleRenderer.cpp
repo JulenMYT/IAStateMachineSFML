@@ -19,7 +19,7 @@ void RectangleRenderer::Render(sf::RenderWindow* _window)
 	const GameObject* owner = GetOwner();
 
 	const Maths::Vector2<float> position = owner->GetPosition();
-	shape->setPosition(position.x, position.y);
+	shape->setPosition(position.x - size.x / 2.0f, position.y - size.y / 2.0f);
 
 	shape->setSize(static_cast<sf::Vector2f>(owner->GetScale() * size));
 	shape->setRotation(owner->GetRotation());
