@@ -102,6 +102,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="MainScene.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="RectangleRenderer.h" />
