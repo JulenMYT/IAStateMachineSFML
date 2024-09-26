@@ -2,6 +2,7 @@
 
 #include "Component.h"
 #include "InputManager.h"
+#include "RectangleCollider.h"
 
 class MovementComponent : public Component
 {
@@ -9,10 +10,20 @@ public :
 
 	void Update(const float _delta_time) override
 	{
-		Input(_delta_time);
+		Maths::Vector2<float> newPosition = Input(_delta_time);
+		if (!CheckCollision(newPosition))
+		{
+			GetOwner()->SetPosition(newPosition);
+		}
 	}
 
-	void Input(const float _delta_time)
+	void SetCollider(RectangleCollider* _rectangleCollider) { rectangleCollider = _rectangleCollider; }
+
+private :
+	float speed = 500.0f;
+	RectangleCollider* rectangleCollider = nullptr;
+
+	Maths::Vector2<float> Input(const float _delta_time)
 	{
 		Maths::Vector2<float> position = GetOwner()->GetPosition();
 
@@ -24,7 +35,6 @@ public :
 		{
 			position.x -= speed * _delta_time;
 		}
-
 		if (InputManager::GetKey(sf::Keyboard::Z))
 		{
 			position.y -= speed * _delta_time;
@@ -34,9 +44,24 @@ public :
 			position.y += speed * _delta_time;
 		}
 
-		GetOwner()->SetPosition(position);
+		return position;
 	}
 
-private :
-	float speed = 500.0f;
+	bool CheckCollision(const Maths::Vector2<float>& newPosition) const
+	{
+		sf::FloatRect tempBounds = rectangleCollider->GetBounds();
+		tempBounds.left = newPosition.x - tempBounds.width / 2.0f;
+		tempBounds.top = newPosition.y - tempBounds.height / 2.0f;
+
+		const auto& colliders = rectangleCollider->GetColliders();
+		for (const auto& collider : colliders)
+		{
+			if (collider != rectangleCollider && collider->GetBounds().intersects(tempBounds))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
 };

@@ -5,6 +5,7 @@
 #include "MovementComponent.h"
 #include "RectangleRenderer.h"
 #include "Camera.h"
+#include "RectangleCollider.h"
 
 class MainScene : public Scene
 {
@@ -23,11 +24,16 @@ public :
 
 		Camera* camera = gameObject->CreateComponent<Camera>();
 
-		gameObject->CreateComponent<MovementComponent>();
-
 		RectangleRenderer* rectangleRenderer = gameObject->CreateComponent<RectangleRenderer>();
 		rectangleRenderer->SetSize(Maths::Vector2f(size_x,size_y));
 		rectangleRenderer->SetColor(color);
+		rectangleRenderer->SetOrigin(Maths::Vector2f(size_x / 2.0f, size_y / 2.0f));
+
+		RectangleCollider* rectangleCollider = gameObject->CreateComponent<RectangleCollider>();
+		rectangleCollider->SetBounds(sf::FloatRect(_position_x, _position_y, size_x, size_y));
+
+		MovementComponent* movementComponent = gameObject->CreateComponent<MovementComponent>();
+		movementComponent->SetCollider(rectangleCollider);
 
 		return gameObject;
 	}
@@ -40,6 +46,10 @@ public :
 		RectangleRenderer* rectangleRenderer = gameObject->CreateComponent<RectangleRenderer>();
 		rectangleRenderer->SetSize(Maths::Vector2f(size_x, size_y));
 		rectangleRenderer->SetColor(color);
+		rectangleRenderer->SetOrigin(Maths::Vector2f(size_x / 2.0f, size_y / 2.0f));
+
+		RectangleCollider* rectangleCollider = gameObject->CreateComponent<RectangleCollider>();
+		rectangleCollider->SetBounds(sf::FloatRect(_position_x, _position_y, size_x, size_y));
 
 		return gameObject;
 	}
