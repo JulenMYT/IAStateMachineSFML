@@ -103,11 +103,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Background.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="MainScene.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="RectangleCollider.h" />
     <ClInclude Include="RectangleRenderer.h" />
+    <ClInclude Include="RectangleTrigger.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

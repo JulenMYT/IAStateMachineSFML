@@ -20,7 +20,7 @@ public :
 	void SetCollider(RectangleCollider* _rectangleCollider) { rectangleCollider = _rectangleCollider; }
 
 private :
-	float speed = 500.0f;
+	float speed = 200.0f;
 	RectangleCollider* rectangleCollider = nullptr;
 
 	Maths::Vector2<float> Input(const float _delta_time)
