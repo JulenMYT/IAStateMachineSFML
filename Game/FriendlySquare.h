@@ -6,14 +6,13 @@
 
 //components
 #include "RectangleTrigger.h"
-#include "RectangleCollider.h"
 
 class EntityStateMachine;
 class EntityIdleState;
 class EntityFollowState;
 class EntityFlashState;
 
-class FriendlySquare : public Entity 
+class FriendlySquare : public Entity
 {
 public:
 	void Initialize();
@@ -34,6 +33,6 @@ public:
 	void SetFlashRange(RectangleTrigger* _flashRange) { flashRange = _flashRange; }
 
 private :
-	RectangleTrigger* followRange;
-	RectangleTrigger* flashRange;
+	RectangleTrigger* followRange = nullptr;
+	RectangleTrigger* flashRange = nullptr;
 };

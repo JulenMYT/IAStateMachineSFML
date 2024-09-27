@@ -6,7 +6,6 @@
 class EntityStateMachine : public Component
 {
 public :
-
 	void Initialize(EntityState* startingState);
 
 	void ChangeState(EntityState* newState);
@@ -15,5 +14,5 @@ public :
 	void SetState(EntityState* entityState) { currentState = entityState; }
 
 private :
-	EntityState* currentState;
+	EntityState* currentState = nullptr;
 };

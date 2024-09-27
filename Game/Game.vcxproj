@@ -93,6 +93,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EntityFlashState.cpp" />
+    <ClCompile Include="EntityFollowState.cpp" />
     <ClCompile Include="EntityStateMachine.cpp" />
     <ClCompile Include="FriendlySquare.cpp" />
     <ClCompile Include="main.cpp" />

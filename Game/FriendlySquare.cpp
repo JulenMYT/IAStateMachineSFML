@@ -1,10 +1,10 @@
 #include "FriendlySquare.h"
 
-#include "EntityIdleState.h"
-#include "EntityFollowState.h"
 #include "EntityFlashState.h"
+#include "EntityFollowState.h"
+#include "EntityIdleState.h"
 
-inline void FriendlySquare::Initialize()
+void FriendlySquare::Initialize()
 {
 	entityStateMachine = GetOwner()->CreateComponent<EntityStateMachine>();
 	entityIdleState = GetOwner()->CreateState<EntityIdleState>(this, entityStateMachine);
@@ -16,7 +16,7 @@ inline void FriendlySquare::Initialize()
 	player = GetOwner()->GetOwner()->FindGameObject("Player");
 }
 
-inline void FriendlySquare::Update(float _delta_time)
+void FriendlySquare::Update(float _delta_time)
 {
 	isInFollowRange = followRange->CheckCollision(*player->GetComponent<RectangleCollider>());
 	isInFlashRange = flashRange->CheckCollision(*player->GetComponent<RectangleCollider>());

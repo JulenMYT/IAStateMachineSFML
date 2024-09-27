@@ -3,7 +3,7 @@
 #include "EntityState.h"
 #include "FriendlySquare.h"
 
-class EntityIdleState : public EntityState 
+class EntityIdleState : public EntityState
 {
 public :
 	EntityIdleState(FriendlySquare* _entity, EntityStateMachine* _entityStateMachine) : EntityState(_entity, _entityStateMachine) {}
