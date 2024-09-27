@@ -8,15 +8,16 @@
 #include "RectangleCollider.h"
 #include "RectangleTrigger.h"
 #include "Background.h"
+#include "FriendlySquare.h"
 
 class MainScene : public Scene
 {
 public :
 	MainScene() : Scene("MainScene")
 	{
-		CreateBackground();
+		//CreateBackground();
 
-		CreatePlayer("Player", 200.0f, 200.0f, 50.0f, 50.0f, sf::Color::Red);
+		CreatePlayer("Player", 0.0f, 0.0f, 50.0f, 50.0f, sf::Color::Red);
 
 		CreateDebile("Debile", 300.0f, 300.0f, 75.0f, 75.0f, 200.0f, 50.0f, sf::Color::Green);
 	}
@@ -55,6 +56,9 @@ public :
 		GameObject* gameObject = CreateGameObject(_name);
 		gameObject->SetPosition(Maths::Vector2f(_position_x, _position_y));
 
+		FriendlySquare* friendlySquare = gameObject->CreateComponent<FriendlySquare>();
+		friendlySquare->Initialize();
+
 		RectangleRenderer* rectangleRenderer = gameObject->CreateComponent<RectangleRenderer>();
 		rectangleRenderer->SetSize(Maths::Vector2f(size_x, size_y));
 		rectangleRenderer->SetColor(color);
@@ -68,6 +72,9 @@ public :
 
 		RectangleTrigger* tauntTrigger = gameObject->CreateComponent<RectangleTrigger>();
 		tauntTrigger->SetBounds(sf::FloatRect(_position_x - tauntRange, _position_y - tauntRange, size_x + tauntRange * 2, size_y + tauntRange * 2));
+
+		friendlySquare->SetFollowRange(chaseTrigger);
+		friendlySquare->SetFlashRange(tauntTrigger);
 
 		return gameObject;
 	}

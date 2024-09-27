@@ -93,6 +93,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EntityStateMachine.cpp" />
+    <ClCompile Include="FriendlySquare.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RectangleCollider.cpp" />
     <ClCompile Include="RectangleRenderer.cpp" />
@@ -105,6 +107,13 @@
   <ItemGroup>
     <ClInclude Include="Background.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityFlashState.h" />
+    <ClInclude Include="EntityFollowState.h" />
+    <ClInclude Include="EntityIdleState.h" />
+    <ClInclude Include="EntityState.h" />
+    <ClInclude Include="EntityStateMachine.h" />
+    <ClInclude Include="FriendlySquare.h" />
     <ClInclude Include="MainScene.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="RectangleCollider.h" />

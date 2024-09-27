@@ -3,10 +3,14 @@
 #include <vector>
 
 #include "Component.h"
+#include "Scene.h"
 #include "SFML/Graphics/RenderWindow.hpp"
 #include "Maths/Vector2.h"
 
 class Component;
+class Scene;
+class FriendlySquare;
+class EntityStateMachine;
 
 class GameObject
 {
@@ -30,6 +34,9 @@ public:
 	T* CreateComponent();
 
 	template<typename T>
+	T* CreateState(FriendlySquare* _entity, EntityStateMachine* _entityStateMachine);
+
+	template<typename T>
 	T* GetComponent();
 
 	void Awake() const;
@@ -44,9 +51,13 @@ public:
 
 	void Destroy() const;
 
+	Scene* GetOwner() const { return owner; }
+	void SetOwner(Scene* _owner) { owner = _owner; }
+
 private :
 	std::string name;
 	std::vector<Component*> components;
+	Scene* owner = nullptr;
 
 	Maths::Vector2<float> position = Maths::Vector2f::Zero;
 	float rotation = 0.0f;
@@ -57,6 +68,15 @@ template<typename T>
 T* GameObject::CreateComponent()
 {
 	T* component = new T();
+	component->SetOwner(this);
+	components.push_back(component);
+	return component;
+}
+
+template<typename T>
+T* GameObject::CreateState(FriendlySquare* _entity, EntityStateMachine* _entityStateMachine)
+{
+	T* component = new T(_entity, _entityStateMachine);
 	component->SetOwner(this);
 	components.push_back(component);
 	return component;

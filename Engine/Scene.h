@@ -5,6 +5,8 @@
 
 #include "GameObject.h"
 
+class GameObject;
+
 class Scene
 {
 public :

@@ -1,0 +1,39 @@
+#pragma once
+
+#include "Entity.h" //classe parent
+
+#include "EntityStateMachine.h" //state machine associée
+
+//components
+#include "RectangleTrigger.h"
+#include "RectangleCollider.h"
+
+class EntityStateMachine;
+class EntityIdleState;
+class EntityFollowState;
+class EntityFlashState;
+
+class FriendlySquare : public Entity 
+{
+public:
+	void Initialize();
+
+	void Update(float _delta_time) override;
+
+	bool isInFollowRange = false;
+	bool isInFlashRange = false;
+
+	EntityStateMachine* entityStateMachine;
+	EntityIdleState* entityIdleState;
+	EntityFollowState* entityFollowState;
+	EntityFlashState* entityFlashState;
+
+	GameObject* player;
+
+	void SetFollowRange(RectangleTrigger* _followRange) { followRange = _followRange; }
+	void SetFlashRange(RectangleTrigger* _flashRange) { flashRange = _flashRange; }
+
+private :
+	RectangleTrigger* followRange;
+	RectangleTrigger* flashRange;
+};
