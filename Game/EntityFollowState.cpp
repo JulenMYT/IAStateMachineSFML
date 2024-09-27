@@ -44,7 +44,6 @@ Maths::Vector2<float> EntityFollowState::Move(const float _delta_time)
 
 	Maths::Vector2<float> position = entity->GetOwner()->GetPosition();
 	position += direction * speed * _delta_time;
-	entity->GetOwner()->SetPosition(position);
 
 	return position;
 }

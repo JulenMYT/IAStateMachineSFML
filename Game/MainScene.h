@@ -20,6 +20,8 @@ public :
 		CreatePlayer("Player", 0.0f, 0.0f, 50.0f, 50.0f, sf::Color::Green);
 
 		CreateDebile("Debile", 100.0f, 100.0f, 75.0f, 75.0f, 200.0f, 50.0f, sf::Color::Yellow);
+		CreateDebile("Debile", 100.0f, 200.0f, 75.0f, 75.0f, 200.0f, 50.0f, sf::Color::Yellow);
+
 	}
 
 	GameObject* CreateBackground()
