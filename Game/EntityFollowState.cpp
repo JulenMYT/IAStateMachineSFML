@@ -2,11 +2,18 @@
 
 #include "EntityFlashState.h"
 #include "EntityIdleState.h"
+#include "RectangleRenderer.h"
+
+#include <iostream>
 
 EntityFollowState::EntityFollowState(FriendlySquare* _entity, EntityStateMachine* _entityStateMachine): EntityState(_entity, _entityStateMachine) {}
 
 void EntityFollowState::Update(float _delta_time)
 {
+	std::cout << "Je follow" << '\n';
+
+	entity->GetOwner()->GetComponent<RectangleRenderer>()->SetColor(sf::Color::Yellow);
+
 	if (!entity->isInFollowRange)
 	{
 		entityStateMachine->ChangeState(entity->entityIdleState);

@@ -22,7 +22,7 @@ void Game::Init()
     CreateManager<TimeManager>();
     CreateManager<SceneManager>();
 
-    cout << "Launch Game";
+    cout << "Launch Game" << "\n";
     for (auto& manager : managers)
     {
         manager->Awake();

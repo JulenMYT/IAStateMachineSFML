@@ -3,7 +3,7 @@
 
 #include "EntityState.h" //template state
 
-class EntityStateMachine : public Component
+class EntityStateMachine
 {
 public :
 	void Initialize(EntityState* startingState);

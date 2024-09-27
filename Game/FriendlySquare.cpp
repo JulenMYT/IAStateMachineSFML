@@ -4,12 +4,14 @@
 #include "EntityFollowState.h"
 #include "EntityIdleState.h"
 
+#include <iostream>
+
 void FriendlySquare::Initialize()
 {
-	entityStateMachine = GetOwner()->CreateComponent<EntityStateMachine>();
-	entityIdleState = GetOwner()->CreateState<EntityIdleState>(this, entityStateMachine);
-	entityFollowState = GetOwner()->CreateState<EntityFollowState>(this, entityStateMachine);
-	entityFlashState = GetOwner()->CreateState<EntityFlashState>(this, entityStateMachine);
+	entityStateMachine = new EntityStateMachine;
+	entityIdleState = new EntityIdleState(this, entityStateMachine);
+	entityFollowState = new EntityFollowState(this, entityStateMachine);
+	entityFlashState = new EntityFlashState(this, entityStateMachine);
 
 	entityStateMachine->Initialize(entityIdleState);
 
@@ -18,8 +20,9 @@ void FriendlySquare::Initialize()
 
 void FriendlySquare::Update(float _delta_time)
 {
-	isInFollowRange = followRange->CheckCollision(*player->GetComponent<RectangleCollider>());
-	isInFlashRange = flashRange->CheckCollision(*player->GetComponent<RectangleCollider>());
+	RectangleCollider* playerCollider = player->GetComponent<RectangleCollider>();
+	isInFollowRange = followRange->CheckCollision(*playerCollider);
+	isInFlashRange = flashRange->CheckCollision(*playerCollider);
 
 	entityStateMachine->GetState()->Update(_delta_time);
 }

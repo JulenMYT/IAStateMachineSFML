@@ -5,7 +5,7 @@
 class FriendlySquare;
 class EntityStateMachine;
 
-class EntityState : public Component
+class EntityState
 {
 public :
 	EntityState(FriendlySquare* _entity, EntityStateMachine* _entityStateMachine)
@@ -18,7 +18,7 @@ public :
 
 	virtual void ExitState() {}
 
-	void Update(float _delta_time) override {}
+	virtual void Update(float _delta_time) {}
 
 protected :
 	FriendlySquare* entity;
