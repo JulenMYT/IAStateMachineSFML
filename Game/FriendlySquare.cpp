@@ -26,3 +26,23 @@ void FriendlySquare::Update(float _delta_time)
 
 	entityStateMachine->GetState()->Update(_delta_time);
 }
+
+void FriendlySquare::DetectNeighbours()
+{
+    neighbours.clear();
+
+    RectangleCollider* rectangleCollider = GetOwner()->GetComponent<RectangleCollider>();
+    const auto& colliders = RectangleCollider::GetColliders();
+
+    for (const auto& collider : colliders)
+    {
+        if (collider != rectangleCollider && followRange->CheckCollision(*collider))
+        {
+            FriendlySquare* neighbourSquare = collider->GetOwner()->GetComponent<FriendlySquare>();
+            if (neighbourSquare)
+            {
+                neighbours.push_back(neighbourSquare);
+            }
+        }
+    }
+}

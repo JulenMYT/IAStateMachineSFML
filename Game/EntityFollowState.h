@@ -8,7 +8,10 @@ class EntityFollowState : public EntityState
 public :
 	EntityFollowState(FriendlySquare* _entity, EntityStateMachine* _entityStateMachine);
 
+	void EnterState() override;
 	void Update(float _delta_time) override;
+
+	Maths::Vector2f GetDirection() { return direction; }
 
 private :
 	Maths::Vector2f direction;

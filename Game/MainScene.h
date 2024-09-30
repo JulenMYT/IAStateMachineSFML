@@ -17,10 +17,16 @@ public :
 	{
 		CreateBackground();
 
-		CreatePlayer("Player", 0.0f, 0.0f, 50.0f, 50.0f, sf::Color::Green);
+		CreatePlayer("Player", 0.0f, 0.0f, 20.0f, 20.0f, sf::Color::Magenta);
 
-		CreateDebile("Debile", 100.0f, 100.0f, 75.0f, 75.0f, 200.0f, 50.0f, sf::Color::Yellow);
-		CreateDebile("Debile", 100.0f, 200.0f, 75.0f, 75.0f, 200.0f, 50.0f, sf::Color::Yellow);
+		CreateDebile("Debile", 100.0f, 100.0f, 30.0f, 30.0f, 100.0f, 25.0f, sf::Color::Yellow);
+
+		/*
+		CreateDebile("Debile", 100.0f, 250.0f, 30.0f, 30.0f, 100.0f, 25.0f, sf::Color::Yellow);
+		CreateDebile("Debile", 120.0f, 300.0f, 30.0f, 30.0f, 100.0f, 25.0f, sf::Color::Yellow);
+		CreateDebile("Debile", 100.0f, 430.0f, 30.0f, 30.0f, 100.0f, 25.0f, sf::Color::Yellow);
+		CreateDebile("Debile", 100.0f, 500.0f, 30.0f, 30.0f, 100.0f, 25.0f, sf::Color::Yellow);
+		*/
 
 	}
 

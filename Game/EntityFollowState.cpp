@@ -8,15 +8,16 @@
 
 EntityFollowState::EntityFollowState(FriendlySquare* _entity, EntityStateMachine* _entityStateMachine): EntityState(_entity, _entityStateMachine) {}
 
+void EntityFollowState::EnterState()
+{
+	std::cout << "Je fuis" << '\n';
+}
+
 void EntityFollowState::Update(float _delta_time)
 {
-	std::cout << "Je follow" << '\n';
-
-	entity->GetOwner()->GetComponent<RectangleRenderer>()->SetColor(sf::Color::Yellow);
-
-	if (!entity->isInFollowRange)
+	if (!entity->isInFollowRange && entity->isLeader || entity->leader->entityStateMachine->GetState() != entity->leader->entityFollowState)
 	{
-		entityStateMachine->ChangeState(entity->entityIdleState);
+		entityStateMachine->ChangeState((entity->entityIdleState));
 	}
 	else if (entity->isInFlashRange)
 	{
@@ -33,9 +34,18 @@ void EntityFollowState::Update(float _delta_time)
 
 Maths::Vector2f EntityFollowState::CheckDirection()
 {
-	direction = entity->GetOwner()->GetPosition() - entity->player->GetPosition();
-	direction = direction.Normalize();
-	return direction;
+	if (entity->isLeader)
+	{
+		direction = entity->GetOwner()->GetPosition() - entity->player->GetPosition();
+		direction = direction.Normalize();
+		return direction;
+	}
+	else
+	{
+		direction = entity->leader->GetOwner()->GetPosition() - entity->player->GetPosition();
+		direction = direction.Normalize();
+		return direction;
+	}
 }
 
 Maths::Vector2<float> EntityFollowState::Move(const float _delta_time)

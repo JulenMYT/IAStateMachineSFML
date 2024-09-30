@@ -32,7 +32,15 @@ public:
 	void SetFollowRange(RectangleTrigger* _followRange) { followRange = _followRange; }
 	void SetFlashRange(RectangleTrigger* _flashRange) { flashRange = _flashRange; }
 
+	void DetectNeighbours();
+	std::vector<FriendlySquare*> GetNeighbours() { return neighbours; }
+
+	FriendlySquare* leader = this;
+	bool isLeader = true;
+
 private :
 	RectangleTrigger* followRange = nullptr;
 	RectangleTrigger* flashRange = nullptr;
+
+	std::vector<FriendlySquare*> neighbours;
 };
