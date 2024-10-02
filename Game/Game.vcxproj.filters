@@ -83,5 +83,8 @@
     <ClInclude Include="EntityFlashState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SpaceBackground.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

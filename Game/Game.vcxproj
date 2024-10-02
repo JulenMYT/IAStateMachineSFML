@@ -122,6 +122,7 @@
     <ClInclude Include="RectangleCollider.h" />
     <ClInclude Include="RectangleRenderer.h" />
     <ClInclude Include="RectangleTrigger.h" />
+    <ClInclude Include="SpaceBackground.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

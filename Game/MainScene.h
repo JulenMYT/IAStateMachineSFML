@@ -9,6 +9,7 @@
 #include "RectangleTrigger.h"
 #include "Background.h"
 #include "FriendlySquare.h"
+#include "SpaceBackground.h"
 
 class MainScene : public Scene
 {
@@ -17,6 +18,7 @@ public :
 	{
 		//CreateBackground();
 
+		CreateSpaceBackground();
 		CreatePlayer("Player", 0.0f, 0.0f, 20.0f, 20.0f, sf::Color::Magenta);
 
 		CreateDebile("Debile", 100.0f, 100.0f, 30.0f, 30.0f, 100.0f, 25.0f, sf::Color::Yellow);
@@ -26,14 +28,24 @@ public :
 		CreateDebile("Debile", -120.0f, 500.0f, 30.0f, 30.0f, 100.0f, 25.0f, sf::Color::Yellow);
 		CreateDebile("Debile", 200.0f, 430.0f, 30.0f, 30.0f, 100.0f, 25.0f, sf::Color::Yellow);
 		CreateDebile("Debile", -200.0f, -20.0f, 30.0f, 30.0f, 100.0f, 25.0f, sf::Color::Yellow);
-		
-
 	}
 
 	GameObject* CreateBackground()
 	{
 		GameObject* gameObject = CreateGameObject("Background");
 		GradientBackground* gradientBackground = gameObject->CreateComponent<GradientBackground>();
+
+		return gameObject;
+	}
+
+	GameObject* CreateSpaceBackground()
+	{
+		GameObject* gameObject = CreateGameObject("SpaceBackground");
+		SpaceBackground* spaceBackground = gameObject->CreateComponent<SpaceBackground>();
+		spaceBackground->SetMin(sf::Vector2f(-500, -500));
+		spaceBackground->SetMax(sf::Vector2f(500, 500));
+		spaceBackground->SetNumberOfPoints(100);
+		spaceBackground->GenerateRandomPoints();
 
 		return gameObject;
 	}

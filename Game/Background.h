@@ -26,18 +26,18 @@ private:
 	{
 		sf::VertexArray gradient(sf::TrianglesStrip, 4);
 
-		gradient[0].position = sf::Vector2f(0, 0);
+		gradient[0].position = sf::Vector2f(-500, -500);
 		gradient[0].color = topColor;
 
 		sf::Vector2u windowSize = _window->getSize();
 
-		gradient[1].position = sf::Vector2f(0, windowSize.y);
+		gradient[1].position = sf::Vector2f(-500, 500);
 		gradient[1].color = bottomColor;
 
-		gradient[2].position = sf::Vector2f(windowSize.x, 0);
+		gradient[2].position = sf::Vector2f(500, -500);
 		gradient[2].color = topColor;
 
-		gradient[3].position = sf::Vector2f(windowSize.x, windowSize.y);
+		gradient[3].position = sf::Vector2f(500, 500);
 		gradient[3].color = bottomColor;
 
 		_window->draw(gradient);
